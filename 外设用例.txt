@@ -1,0 +1,205 @@
+//     HX711_Init();
+    // Get_Maopi();
+//     InitRc522();
+//    OLED_Init();
+//    SG90_init(90);
+//     matrix_init();
+//    step_28byj48_angles(90,1);
+
+//    MPU6050_Init();
+//    MPU6050_DMP_Init();
+//    LED_RGB_init();
+//    IR_Init();
+ //   flame_Init();
+//    Fan_init(100);
+    //seg_Fan_pwd(50);
+//    Smg_init();
+
+//    hc595_Test(50);
+
+    //OLED_DrawCircle(64,32,10);
+
+//    OLED_Printf(1, 1, 12, 1, "NiMaSi:%d %s",123,"Hello");
+//    OLED_ShowChinese(1, 1, 0, 16, 1);
+//    OLED_ShowChinese(16, 1, 1, 16, 1);
+//    OLED_ShowChinese(32, 1, 2, 16, 1);
+//    OLED_ShowChinese(48, 1, 3, 16, 1);
+//    OLED_ShowChinese(64, 1, 4, 16, 1);
+//    lcd_line_draw(10, 1, 50, LCD_LINEDIR_VERTICAL);
+//    lcd_rectangle_draw(10, 10, 50, 20);
+//    lcd_circle_draw(64, 32, 15);
+//    lcd_ellipse_draw(64, 32, 30, 10);
+//    lcd_rectangle_fill(10, 10, 50, 20);
+//
+//    OLED_Refresh();
+
+//    HC595_Send_16Bit(0xffff);
+    //UART2_Config_Init();
+
+//    LEDx_Set_Status(redRGB_ON);
+//    rt_thread_mdelay(1000);
+//    LEDx_Set_Status(redRGB_OFF);
+//    rt_thread_mdelay(1000);
+//    LEDx_Set_Status(blueRGB_ON);
+//    rt_thread_mdelay(1000);
+//    LEDx_Set_Status(blueRGB_OFF);
+//    rt_thread_mdelay(1000);
+//    LEDx_Set_Status(greenRGB_ON);
+//    rt_thread_mdelay(1000);
+//    LEDx_Set_Status(greenRGB_OFF);
+//    rt_thread_mdelay(1000);
+//    LEDx_Set_Status(yellowRGB);
+//    rt_thread_mdelay(1000);
+//    LEDx_Set_Status(whiteRGB);
+//    rt_thread_mdelay(1000);
+//    LEDx_Set_Status(purpleRGB);
+//    rt_thread_mdelay(1000);
+//    LEDx_Set_Status(cyanRGB);
+//    rt_thread_mdelay(1000);
+  //  unsigned char Tab[] = {0x3F,0x06,0x5B,0x4F,0x66,0x6D,0x7D,0x07,0x7F,0x6F,0x77,0x7C,0x39,0x5E,0x79,0x71};
+
+//    for(int i = 99; i > 0; i--)
+//    {
+//        if(i<10)
+//        {
+//            OLED_Clear();
+//            OLED_ShowNum(1,1,i,1,12,1);
+//            OLED_Refresh();
+//            rt_thread_mdelay(1000);
+//
+//            if(i<5)
+//            {
+//
+//                BEEP_Control(RT_TRUE);
+//                rt_thread_mdelay(500);
+//                BEEP_Control(RT_FALSE);
+//            }
+//        }
+//        else {
+//            OLED_ShowNum(1,1,i,2,12,1);
+//            OLED_Refresh();
+//            rt_thread_mdelay(1000);
+//        }
+//
+//    }
+
+//    while (1)
+//    {
+
+
+//        OLED_ShowChinese(1, 1, 0, 24, 0);
+
+        //HC595_Send_16Bit(0x11ee);
+
+
+        //rt_thread_mdelay(1000);
+///////////////////////////////////
+//        SG90_init(0);
+//        rt_thread_mdelay(1000);
+//        SG90_init(180);
+//        rt_thread_mdelay(1000);
+///////////////////////////////////
+//        /////////////////////////
+//        char rfidTXbuf[20] = "123456789";
+//        char rfidRXbuf[20] = {0};
+//        if(Write_RFID(rfidTXbuf,9,0,(char *)KEY,1) == 0)
+//        {
+//            rt_kprintf("ok");
+//        }
+//        else {
+//            rt_kprintf("no");
+//        }
+//        if(Read_RFID(rfidRXbuf,1,0,(char *)KEY,1)==MI_OK)
+//        {
+//            rt_kprintf("RFID:%s\n",rfidRXbuf);
+//        }
+//        /// /////////////////////
+        ////////////////////////////
+//        char key = Keyboard_proc();
+//        if (key != 0)
+//            rt_kprintf("键值:%d\n", key);
+//        else
+//            rt_thread_delay(50);
+        /// /////////////////////////
+        /////////////////////////////
+//        uint8_t temp = 0,humi = 0;
+//        if(DHT11_REC_Data(&temp,&humi)==1){
+//            rt_kprintf("温度:%d\t湿度:%d\n",temp,humi);
+//        }
+        /////////////////////////////
+        ////////////////////////////
+//        int hx711data = Get_Weight();
+//        rt_kprintf("压力传感器数据:%d.%d g\n",hx711data/10,hx711data%10);
+        //////////////////////////
+        /////////////////////////////
+        //     rt_kprintf("光照值:%d\n",BH1750_Test());
+        /////////////////////////////
+        ////////////////////////////
+        // rt_kprintf("可燃气体:%d\n",(int)get_gas_real_value());
+        // rt_thread_mdelay(1000);
+        ////////////////////////////
+        ////////////////////////////
+        //rt_kprintf("距离:%d\n",ranging_once());
+        ////////////////////////////
+////////////////////////////////////////////////////////////////////////
+//        char buf[100] = { 0 };
+//        float Pitch, Roll, Yaw;                               //俯仰角默认跟中值一样，翻滚角，偏航角
+//        int16_t ax, ay, az, gx, gy, gz;                          //加速度，陀螺仪角速度
+//        MPU6050_DMP_Get_Data(&Pitch, &Roll, &Yaw);                //读取姿态信息(其中偏航角有飘移是正常现象)
+//        MPU_Get_Gyroscope(&gx, &gy, &gz);
+//        MPU_Get_Accelerometer(&ax, &ay, &az);
+//        static rt_tick_t TICK_TIM = 0;
+//        if (TICK_TIM <= rt_tick_get())
+//        {
+//            TICK_TIM = rt_tick_get() + 100;
+//            rt_kprintf("Pitch%d\tRoll:%d\tYaw:%d\n", (int) Pitch, (int) Roll, (int) Yaw);
+//            sprintf(buf, "gx%f\tgy:%f\tgz:%f\nax%f\tay:%f\taz:%f\n", gx / 16.4, gy / 16.4, gz / 16.4, ax / 16384.0,
+//                    ay / 16384.0, az / 16384.0);
+//            rt_kprintf("%s", buf);
+//        }
+/////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////
+//        if(get_ir_open_tim()==RT_TRUE){
+//               rt_kprintf("有人\n");
+//        }
+//        rt_thread_mdelay(1000);
+/////////////////////////////////////
+/// //////////////////////////////////////
+        //rt_kprintf("酒精:%d\n",(int)get_Alcohol_real_value());
+        // rt_thread_mdelay(1000);
+/////////////////////////////////////
+//////////////////////////////////////
+//        if (get_flame_open_tim() == RT_TRUE)
+//        {
+//            rt_kprintf("有火焰\n");
+//        }
+//        rt_thread_mdelay(1000);
+/////////////////////////////////////
+/// /////////////////////////////////////
+//        Lock_Control(RT_TRUE);
+//        rt_thread_mdelay(200);
+//        Lock_Control(RT_FALSE);
+//        rt_thread_mdelay(200);
+/////////////////////////////////////
+/// /// /////////////////////////////////////
+//        seg_Fan_pwd(30);
+//        rt_thread_mdelay(2000);
+//        seg_Fan_pwd(100);
+//        rt_thread_mdelay(2000);
+/////////////////////////////////////
+////////////////////////////////////
+
+//        BEEP_Control(RT_TRUE);
+//        rt_thread_mdelay(500);
+//        BEEP_Control(RT_FALSE);
+
+/////////////////////////////////////
+////////////////////////////////////
+
+
+
+//        rt_thread_mdelay(500);
+////////////////////////////////////
+//    }
+
+//    rt_int8_t result=0;

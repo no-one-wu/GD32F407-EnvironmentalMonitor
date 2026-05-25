@@ -1,0 +1,90 @@
+rt_err_t lcd_rx_handler(rt_device_t dev, rt_size_t size)
+{
+    static uint8_t buffer[32];
+    static int16_t buf_index = 0;
+    rt_device_read(dev, 0, &buffer[buf_index], 1);
+    if (buffer[buf_index] == 0xBB)
+    {
+        // 打印有效数据
+        buffer[buf_index] = '\0';
+        rt_kprintf("%s\n",buffer);
+        buf_index = 0;
+        if(buffer[0] == 0x31 && buffer[2] == 0x6e)
+        {
+            Taskshutdown = 1;
+            task_1();
+
+        }
+        else if(buffer[0] == 0x31 && buffer[2] == 0x66)
+        {
+            Taskshutdown = 0;
+
+        }
+        else if(buffer[0] == 0x32 && buffer[2] == 0x6e)
+        {
+            Taskshutdown = 2;
+            task_2();
+        }
+        else if(buffer[0] == 0x32 && buffer[2] == 0x66)
+        {
+            Taskshutdown = 0;
+        }
+        else if(buffer[0] == 0x33 && buffer[2] == 0x6e)
+        {
+            Taskshutdown = 3;
+            task_3();
+        }
+        else if(buffer[0] == 0x33 && buffer[2] == 0x66)
+        {
+            Taskshutdown = 0;
+        }
+        else if(buffer[0] == 0x34 && buffer[2] == 0x6e)
+        {
+            Taskshutdown = 4;
+            task_4();
+        }
+        else if(buffer[0] == 0x34 && buffer[2] == 0x66)
+        {
+            Taskshutdown = 0;
+        }
+
+        else if(buffer[0] == 0x35 && buffer[2] == 0x6e)
+        {
+            Taskshutdown = 5;
+            task_5();
+        }
+        else if(buffer[0] == 0x35 && buffer[2] == 0x66)
+        {
+            Taskshutdown = 0;
+        }
+        else if(buffer[0] == 0x36 && buffer[2] == 0x6e)
+        {
+            Taskshutdown = 6;
+            task_6();
+        }
+        else if(buffer[0] == 0x36 && buffer[2] == 0x66)
+        {
+            Taskshutdown = 0;
+        }
+        else if(buffer[0] == 0x37 && buffer[2] == 0x6e)
+        {
+            Taskshutdown = 7;
+            task_7();
+        }
+        else if(buffer[0] == 0x37 && buffer[2] == 0x66)
+        {
+            Taskshutdown = 0;
+        }
+        else {
+            rt_kprintf("数据错误!");
+//            Taskshutdown = 0;
+            return RT_EOK;
+        }
+
+    }
+    else
+    {
+        buf_index++;
+    }
+    return 0;
+}
