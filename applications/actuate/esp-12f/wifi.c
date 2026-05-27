@@ -18,6 +18,7 @@
 #include "flame.h"
 #include "MQ2.h"
 #include "beep.h"
+#include "alarm.h"
 
 rt_mq_t esp12f_mqt = RT_NULL;
 static rt_sem_t esp12f_sem = RT_NULL;
@@ -91,6 +92,7 @@ void esp12f_thread_entry(void *parameter)                         // RT-Thread �
     esp12f_mqt = rt_mq_create("esp12f", 1, 200, RT_IPC_FLAG_FIFO); // 创建消息队列
     rt_kprintf("ESP-12F 初始化完成\n");
     esp12f_init();                                                // 初始化 UART
+    Alarm_Init();                                                 // 初始化报警灯 PA.0
 
     while (1)
     {
@@ -105,12 +107,22 @@ void esp12f_thread_entry(void *parameter)                         // RT-Thread �
         if (result == RT_EOK)
         {
             int i, d = rt_device_read(esp12f_dev, 0, buff, 256);
-            for (i = 0; i < d; i++)
+            for (i = 0; i < d - 2; i++)
             {
-                // 处理接收数据
-//                rt_kprintf("接收到 %d 字节数据，已清空缓冲区\n", d);
+                if ((uint8_t)buff[i] == 0xEE)
+                {
+                    uint8_t cmd = (uint8_t)buff[i + 1];
+                    uint8_t chk = (uint8_t)buff[i + 2];
+                    if ((cmd ^ chk) == 0xFF)
+                    {
+                        if (cmd == 0x01)
+                            Alarm_Trigger();
+                    }
+                }
             }
         }
+
+        Alarm_Update();
 
         if (rt_tick_get() - start_time > 1000)                    // 每 1500 tick (1.5秒) 发送一次
         {

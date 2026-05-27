@@ -37,6 +37,7 @@
 #include "fan.h"
 #include "smg.h"
 #include "beep.h"
+#include "actuate/ALARM/alarm.h"
 
 #include "string.h"
 #include "matrix.h"
