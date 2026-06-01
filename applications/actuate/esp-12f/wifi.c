@@ -18,7 +18,7 @@
 #include "flame.h"
 #include "MQ2.h"
 #include "beep.h"
-#include "alarm.h"
+#include "actuate/ALARM/alarm.h"
 
 rt_mq_t esp12f_mqt = RT_NULL;
 static rt_sem_t esp12f_sem = RT_NULL;
@@ -115,8 +115,16 @@ void esp12f_thread_entry(void *parameter)                         // RT-Thread �
                     uint8_t chk = (uint8_t)buff[i + 2];
                     if ((cmd ^ chk) == 0xFF)
                     {
+                        rt_kprintf("收到指令: 0x%02X 0x%02X 0x%02X\n", 0xEE, cmd, chk);
                         if (cmd == 0x01)
+                        {
+                            rt_kprintf("报警灯触发!\n");
                             Alarm_Trigger();
+                        }
+                    }
+                    else
+                    {
+                        rt_kprintf("无效帧: 0x%02X 0x%02X 0x%02X (校验失败)\n", 0xEE, cmd, chk);
                     }
                 }
             }
@@ -158,12 +166,12 @@ void esp12f_thread_entry(void *parameter)                         // RT-Thread �
             esp12f_tx_data[12] = checksum;
 
             // 打印打包后的数据帧
-            rt_kprintf("打包数据帧: ");
-            for (int i = 0; i < 13; i++)
-            {
-                rt_kprintf("%02X ", (uint8_t)esp12f_tx_data[i]);
-            }
-            rt_kprintf("\n校验: 0x%02X\n", checksum);
+//            rt_kprintf("打包数据帧: ");
+//            for (int i = 0; i < 13; i++)
+//            {
+//                rt_kprintf("%02X ", (uint8_t)esp12f_tx_data[i]);
+//            }
+//            rt_kprintf("\n校验: 0x%02X\n", checksum);
 
             // 注释掉实际发送，改为调试输出
             rt_device_write(esp12f_dev, 0, (void *)esp12f_tx_data, sizeof(esp12f_tx_data));
