@@ -22,13 +22,16 @@ static void GPIO_IRQHandler(void *args)
 void flame_Init(void)
 {
     flame_pin = rt_pin_get("PC.8");  //输出
-    rt_pin_mode(flame_pin, PIN_MODE_INPUT);
+    rt_pin_mode(flame_pin, PIN_MODE_INPUT_PULLUP);
     /* 下降沿触发 */
     rt_pin_attach_irq(flame_pin, PIN_IRQ_MODE_FALLING, GPIO_IRQHandler, RT_NULL);
     rt_pin_irq_enable(flame_pin, PIN_IRQ_ENABLE);
 }
 //返回RT_TRUE有火，返回RT_FALSE没火
 rt_bool_t get_flame_open_tim(){
+    if(flame_pin == RT_NULL){
+        flame_Init();
+    }
     if(rt_pin_read(flame_pin)==PIN_LOW){
         TICK_TIM = rt_tick_get();
     }

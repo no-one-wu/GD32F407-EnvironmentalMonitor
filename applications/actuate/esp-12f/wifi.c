@@ -145,8 +145,8 @@ void esp12f_thread_entry(void *parameter)                         // RT-Thread �
             uint8_t fl = (esp_flame == RT_TRUE) ? 1 : 0;
 
             // 打印转换后的数据
-            // rt_kprintf("转换后数据: te=%d (0x%04X), hu=%d (0x%04X), li=%d (0x%04X), sm=%d (0x%04X), fl=%d\n",
-            //            te, te, hu, hu, li, li, sm, sm, fl);
+             rt_kprintf("转换后数据: te=%d (0x%04X), hu=%d (0x%04X), li=%d (0x%04X), sm=%d (0x%04X), fl=%d\n",
+                        te, te, hu, hu, li, li, sm, sm, fl);
 
             esp12f_tx_data[4] = (uint8_t)(te & 0xFF);
             esp12f_tx_data[3] = (uint8_t)((te >> 8) & 0xFF);
